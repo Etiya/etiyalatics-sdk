@@ -6,10 +6,11 @@ part of 'event_add_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-EventAddRequest _$EventAddRequestFromJson(Map json) => EventAddRequest(
-      key: json['key'] as String,
-      filter: json['filter'] as String,
-      userId: json['userId'] as String,
+EventAddRequest _$EventAddRequestFromJson(Map<String, dynamic> json) =>
+    EventAddRequest(
+      key: json['key'] as String?,
+      filter: json['filter'] as String?,
+      userId: json['userId'] as String?,
     );
 
 Map<String, dynamic> _$EventAddRequestToJson(EventAddRequest instance) =>

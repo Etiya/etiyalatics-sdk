@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:dio/dio.dart';
-import 'package:etiyalatics_sdk/sdk_logger/sdk_logger_impl.dart';
 import 'package:etiyalatics_sdk/sdk_network/sdk_network_http_api_client.dart';
 import 'package:etiyalatics_sdk/sdk_network/src/data_source/request/event/event_add_request.dart';
 import 'package:etiyalatics_sdk/sdk_network/src/data_source/request/session/session_set_request.dart';
@@ -32,7 +31,6 @@ class SDKNetworkHttpApiClientImpl implements SdkNetworkHttpApiClient {
     if (response.statusCode == HttpStatus.accepted) {
       return true;
     } else {
-      SdkMachinelogger.log.d("Event can not added");
       return false;
     }
   }
@@ -46,7 +44,6 @@ class SDKNetworkHttpApiClientImpl implements SdkNetworkHttpApiClient {
     if (response.statusCode == HttpStatus.accepted) {
       return true;
     } else {
-      SdkMachinelogger.log.d("Set Session can not added");
       return false;
     }
   }
@@ -77,7 +74,5 @@ class SDKNetworkHttpApiClientImpl implements SdkNetworkHttpApiClient {
     }
   }
 
-  void _onError(error, stackTrace) {
-    SdkMachinelogger.log.e(error, stackTrace);
-  }
+  void _onError(error, stackTrace) {}
 }

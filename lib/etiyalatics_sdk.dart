@@ -10,8 +10,6 @@ export 'package:etiyalatics_sdk/sdk_network/src/data_source/request/event/event_
 export 'package:etiyalatics_sdk/sdk_network/src/data_source/request/session/session_set_request.dart';
 
 export './etiyalatics_sdk.dart';
-export './sdk_logger/sdk_logger.dart';
-export './sdk_logger/sdk_logger_impl.dart';
 export './sdk_network/sdk_network_http_api_client.dart';
 export './sdk_network/src/data_source/request/event/event_add_request.dart';
 export './sdk_network/src/data_source/request/session/session_set_request.dart';
