@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:html';
 
+import 'package:Etiyalytics_sdk/logger/app_logger_impl.dart';
+import 'package:Etiyalytics_sdk/sdk_network/sdk_network_http_api_client.dart';
+import 'package:Etiyalytics_sdk/sdk_network/src/data_source/request/event/event_add_request.dart';
+import 'package:Etiyalytics_sdk/sdk_network/src/data_source/request/session/session_set_request.dart';
 import 'package:dio/dio.dart';
-import 'package:etiyalatics_sdk/sdk_network/sdk_network_http_api_client.dart';
-import 'package:etiyalatics_sdk/sdk_network/src/data_source/request/event/event_add_request.dart';
-import 'package:etiyalatics_sdk/sdk_network/src/data_source/request/session/session_set_request.dart';
 
 class SDKNetworkHttpApiClientImpl implements SdkNetworkHttpApiClient {
   SDKNetworkHttpApiClientImpl({
@@ -17,7 +18,7 @@ class SDKNetworkHttpApiClientImpl implements SdkNetworkHttpApiClient {
     }
   }
 
-  final addEventEndPoint = "addEvent";
+  final addEventEndPoint = "event_listener_new/g/collect";
   final setSession = "registerDevice";
   final Dio _dio;
 
@@ -61,7 +62,8 @@ class SDKNetworkHttpApiClientImpl implements SdkNetworkHttpApiClient {
         data: data,
         options: Options(headers: headers),
       );
-
+      AppLoggerImpl.log.d(
+          'Status Code : ${response.statusCode} = :(json)=> ${response.data}');
       return response;
     } on DioError catch (e, stackTrace) {
       _onError(e, stackTrace);
@@ -74,5 +76,7 @@ class SDKNetworkHttpApiClientImpl implements SdkNetworkHttpApiClient {
     }
   }
 
-  void _onError(error, stackTrace) {}
+  void _onError(error, stackTrace) {
+    AppLoggerImpl.log.e(error);
+  }
 }
