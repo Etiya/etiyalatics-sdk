@@ -1,21 +1,37 @@
-import 'package:json_annotation/json_annotation.dart';
+// To parse this JSON data, do
+//
+//     final eventAddRequest = eventAddRequestFromJson(jsonString);
 
+import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'event_add_request.freezed.dart';
 part 'event_add_request.g.dart';
 
-@JsonSerializable(anyMap: false, explicitToJson: true)
-class EventAddRequest {
-  EventAddRequest({
-    required this.key,
-    required this.filter,
-    required this.userId,
-  });
+EventAddRequest eventAddRequestFromJson(String str) =>
+    EventAddRequest.fromJson(json.decode(str));
+
+String eventAddRequestToJson(EventAddRequest data) =>
+    json.encode(data.toJson());
+
+@freezed
+class EventAddRequest with _$EventAddRequest {
+  const factory EventAddRequest({
+    String? eventName,
+    int? custId,
+    String? action,
+    String? elementTarget,
+    String? elementId,
+    String? elementClass,
+    String? value,
+    String? page,
+    String? device,
+    String? scrollDepth,
+    int? isLogin,
+    String? sessionDuration,
+  }) = _EventAddRequest;
 
   factory EventAddRequest.fromJson(Map<String, dynamic> json) =>
       _$EventAddRequestFromJson(json);
-
-  final String? key;
-  final String? filter;
-  final String? userId;
-
-  Map<String, dynamic> toJson() => _$EventAddRequestToJson(this);
 }
