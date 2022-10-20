@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:etiyalatics_sdk/etiyalatics_sdk.dart';
+import 'package:Etiyalytics_sdk/etiyalatics_sdk.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Etiyalatics SDK USAGE EXAMPLE',
+        title: 'Etiyalytics SDK USAGE EXAMPLE',
         theme: ThemeData(
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
                 .copyWith(secondary: Colors.orange)),
@@ -32,11 +32,6 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   @override
   void initState() {
-    Etiyalatics().setSession(SessionSetRequest(
-        brand: "APPLE INC",
-        display: "2778‑by‑1284",
-        model: "Iphone 13 Pro Max",
-        version: "120"));
     super.initState();
   }
 
@@ -107,7 +102,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Etiyalatics Demo"),
+          title: const Text("Etiyalytics Demo"),
         ),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -124,11 +119,9 @@ class _MainScreenState extends State<MainScreen> {
                           itemBuilder: (context, index) => ListTile(
                                 onTap: () {
                                   setState(() {
-                                    Etiyalatics().addEvent(EventAddRequest(
-                                        userId: "etiya_mac_emulator Filterable",
-                                        key: 'List Tile Clicked',
-                                        filter:
-                                            "Color : ${ranCol()} Name : ${ranText()}"));
+                                    Etiyalytics.addEvent(const EventAddRequest(
+                                      action: 'List Tile Clicked',
+                                    ));
                                   });
                                 },
                                 tileColor: ranCol(),
@@ -157,11 +150,9 @@ class _MainScreenState extends State<MainScreen> {
                           itemBuilder: (context, index) => ListTile(
                                 onTap: () {
                                   setState(() {
-                                    Etiyalatics().addEvent(EventAddRequest(
-                                        userId: "etiya_mac_emulator",
-                                        key:
-                                            'List Tile Clicked Name : ${ranText()}',
-                                        filter: ""));
+                                    Etiyalytics.addEvent(const EventAddRequest(
+                                      action: 'List Tile Clicked',
+                                    ));
                                   });
                                 },
                                 tileColor: Colors.white,
